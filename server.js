@@ -2,6 +2,7 @@
 const express = require('express');
 const fs =require('fs');
 const path = require('path');
+const { uuid } = require('uuidv4');
 
 //App to handle reqests
 const app = express();
@@ -9,16 +10,21 @@ const app = express();
 //Create Port
 const PORT = process.env.PORT || 3000;
 
-
+// middleware
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+app.use(express.static(`./app/public`));
 
-//Create Routes
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));
+//Creating path or html routes
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));   // Will display index page
 
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html')));
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html'))); // Will display the notes page
 
-app.get('/api/notes', (req, res) => res.JSON(notes));
+app.get('/api/notes', (req, res) => res.JSON(notes)); // Will display the notes in json format
+
+
+// api routes
+
 
 
 
