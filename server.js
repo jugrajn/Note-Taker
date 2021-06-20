@@ -24,7 +24,12 @@ app.get('/api/notes', (req, res) => res.JSON(notes)); // Will display the notes 
 
 
 // api routes
-
+app.post('/api/notes', (req, res) => {
+    let addNote = reqbody;
+    addNote.id = uuid();
+    notes.push(addNote)
+    fs.writeFile(path.join(__dirname, '/db/db.json'), JSON.stringify(notes));
+});
 
 
 
