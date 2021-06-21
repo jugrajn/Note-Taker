@@ -2,7 +2,7 @@
 const express = require('express');
 const fs =require('fs');
 const path = require('path');
-const { uuid } = require('uuidv4');
+const { uuidv4 } = require('uuid');
 
 //App to handle reqests
 const app = express();
@@ -26,9 +26,17 @@ app.get('/api/notes', (req, res) => res.JSON(notes)); // Will display the notes 
 // api routes
 app.post('/api/notes', (req, res) => {
     let addNote = reqbody;
-    addNote.id = uuid();
+    addNote.id = uuidv4();
     notes.push(addNote)
     fs.writeFile(path.join(__dirname, '/db/db.json'), JSON.stringify(notes));
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+    let removeNote = req.params.id;
+    notes = notes.filter((value) => {
+        return value.id !== removeNote
+    });
+    
 });
 
 
