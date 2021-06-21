@@ -15,6 +15,9 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(express.static(`./app/public`));
 
+//Take database 'db.json' file and store to variable to refer to later
+let notes = JSON.parse(fs.readFile(path.join(__dirname, '/app.db.json')));
+
 //Creating path or html routes
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));   // Will display index page
 
