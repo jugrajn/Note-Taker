@@ -36,7 +36,7 @@
   #### Demo
   ![](Assets/demo.gif)
 
-  ![Deployed App](https://notetaker-jugrajn.herokuapp.com/)
+  [Deployed App](https://notetaker-jugrajn.herokuapp.com/)
 
   ## License
  Licensed under MIT
